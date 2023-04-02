@@ -14,3 +14,5 @@ The main goal of this project is to create an API to make CRUD operations on a s
 
 
 ## What I've Learned
+
+For this project i had to learn even more about flask and docker, i have also learned to create a makefile to run commands easier
