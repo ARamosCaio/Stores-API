@@ -32,7 +32,7 @@ class Storelist(MethodView):
         if "name" not in store_data:
             abort(400, message="Bad request. Ensure that 'name' is included in the JSON payload")
 
-        for store in store.values():
+        for store in stores.values():
             if store_data["name"] == store["name"]:
                 abort(400, message="Store already exists")
 
