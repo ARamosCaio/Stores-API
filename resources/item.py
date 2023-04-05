@@ -3,6 +3,7 @@ from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from db import items
+from schemas import ItemSchema, ItemUpdateSchema
 
 blp = Blueprint("Items", "items", description="Operations on items")
 
@@ -39,26 +40,25 @@ class Item(MethodView):
 class ItemList(MethodView):
     def get(self):
         return {"Items": list(items.values())}
-    
-    def post(self):
-        item_data = request.get_json()
 
+@blp.arguments(ItemSchema)
+def post(self, item_data):
+    for item in items.values():
         if (
-            "price" not in item_data
-            or "store_id" not in item_data
-            or "name" not in item_data
+            item_data["name"] == item["name"]
+            and item_data["store_id"] == item["store_id"]
         ):
-            abort(400, message="Bad request. Ensure that 'price', 'store_id' and 'name' are included in the JSON payload")
-        
-        for item in items.values():
-            if(
-                item_data["name"] == item["name"]
-                and item_data["store_id"] == item["store_id"]
-            ):
-                abort(400, message="Item already exists")
-        
-        item_id =uuid.uuid4().hex
-        item = {**item_data, "id": item_id}
-        items[item_id] = item
+            abort(400, message="Item already exists.")
 
-        return item
+    for item in items.values():
+        if(
+            item_data["name"] == item["name"]
+            and item_data["store_id"] == item["store_id"]
+        ):
+            abort(400, message="Item already exists")
+
+    item_id =uuid.uuid4().hex
+    item = {**item_data, "id": item_id}
+    items[item_id] = item
+
+    return item
