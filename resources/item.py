@@ -62,3 +62,14 @@ def post(self, item_data):
     items[item_id] = item
 
     return item
+
+@blp.arguments(ItemUpdateSchema)
+def put(self, item_data, item_id):
+    try: 
+        item = items[item_id]
+        item |= item_data
+    
+        return item
+    
+    except KeyError:
+        abort(404, message="Item not found")
