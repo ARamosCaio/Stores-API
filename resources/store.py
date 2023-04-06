@@ -9,6 +9,7 @@ blp = Blueprint("stores", __name__, description="Operations on stores")
 
 @blp.route("/store/<string:store_id>")
 class Store(MethodView):
+    @blp.response(200, StoreSchema)
     def get(self, store_id):
         try:
             return stores[store_id]
@@ -25,19 +26,21 @@ class Store(MethodView):
 
 @blp.route("/store")
 class Storelist(MethodView):
+    @blp.response(200, StoreSchema(many=True))
     def get(self):
         return {"stores": list(stores.values())}
 
-@blp.arguments(StoreSchema)
-def post(cls, store_data):
-    for store in stores.values():
-        if store_data["name"] == store["name"]:
-            abort(400, message="Store already exists")
+    @blp.arguments(StoreSchema)
+    @blp.response(201, StoreSchema)
+    def post(cls, store_data):
+        for store in stores.values():
+            if store_data["name"] == store["name"]:
+                abort(400, message="Store already exists")
 
-    store_id = uuid.uuid4().hex
-    store = {**store_data, "id": store_id}
-    stores[store_id] = store
+        store_id = uuid.uuid4().hex
+        store = {**store_data, "id": store_id}
+        stores[store_id] = store
 
-    return store
+        return store
 
 
