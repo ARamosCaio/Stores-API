@@ -37,14 +37,13 @@ class Item(MethodView):
 
 @blp.response(200, ItemSchema(many=True))
 def get(self):
-    return {"Items": list(items.values())}
+    return ItemModel.query.all()
 
 @blp.arguments(ItemSchema)
 @blp.response(201, ItemSchema)
 def post(self, item_data):
     
     item = ItemModel(**item_data)
-
     try:
         db.session.add(item)
         de.session.commit()
@@ -56,6 +55,16 @@ def post(self, item_data):
 
 @blp.arguments(ItemUpdateSchema)
 @blp.response(200, ItemSchema)
-def put(self, item_data, item_id):
-    item = ItemModel.query.get_or_404(item_id)
-    raise NotImplementedError("Updating an item is not implemented")
+def put(self, item_data, item_id):  # sourcery skip: use-named-expression
+    item = ItemModel.query.get(item_id)
+    if item:
+        item.price = item_data["price"]
+        item.name = item_data["name"]
+
+    else:
+        item = ItemModel(id=item_id, **item_data)
+    
+    db.session.add(item)
+    db.session.commit()
+
+    return item
