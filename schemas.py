@@ -22,7 +22,7 @@ class ItemUpdateSchema(Schema):
     price = fields.Float()
 
 class StoreSchema(PlainStoreSchema):
-    items = fields.List(field.Nested(PlainItemSchema()),dump_only=True)
+    items = fields.List(fields.Nested(PlainItemSchema()),dump_only=True)
     tag = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
 
 class TagSchema(PlainTagSchema):
