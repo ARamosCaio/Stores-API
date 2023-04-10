@@ -8,6 +8,9 @@ from schemas import TagSchema
 
 blp = Blueprint("Tags", "tags", description="Operations on tags")
 
-@blp.route("/tags")
-def get_tags():
-    pass
+@blp.route("/store/<string:store_id>/tag")
+class TagsInStore(MethodView):
+    @blp.response(200, TagSchema(many=True))
+    def get(self, store_id):
+        stores = StoreModel.query.get_or_404(store_id)
+        return store.tags.all()
