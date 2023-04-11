@@ -57,8 +57,6 @@ After this process, the requests can be made in the swagger interface.
 
 ## What I've Learned
 
-For this project i had to learn even more about flask by using flask smorest to create a REST API, validations with marshmellows, swagger ui and docker cli, i have also learned to create a makefile to run commands easier.
-
 - More about REST APIs
 - How to use flask smorest to create REST APIs
 - How to make validations using the marshmallow lib
