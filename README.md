@@ -23,7 +23,7 @@ python -m venv .venv
 
 After creating it you'll need to activate it
 
-For indows:
+For windows:
 
 ```shell
 .venv\Scripts\activate.bat
@@ -43,7 +43,6 @@ pip install -r requirements.txt
 
 Then run the server:
 
-After that, install the required packages:
 
 ```shell
 make run
@@ -54,7 +53,7 @@ In the browser type:
 ```shell
 http://127.0.0.1:5000/swagger-ui
 ```
-After this process, the request can be made in the swagger interface.
+After this process, the requests can be made in the swagger interface.
 
 ## What I've Learned
 
