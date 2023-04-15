@@ -44,7 +44,6 @@ pip install -r requirements.txt
 
 Then run the server:
 
-
 ```shell
 make run
 ```
@@ -54,6 +53,7 @@ In the browser type:
 ```shell
 http://127.0.0.1:5000/swagger-ui
 ```
+
 After this process, the requests can be made in the swagger interface.
 
 ## What I've Learned
