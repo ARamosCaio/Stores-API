@@ -10,6 +10,7 @@ The main goal of this project is to create an API to make CRUD operations on a s
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 - [Flask Smorest](https://flask-smorest.readthedocs.io/en/latest/)
 - [Flask SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
+- [Flask JWT Extended](https://flask-jwt-extended.readthedocs.io/en/stable/)
 - [Docker](https://docs.docker.com/)
 - [Swagger UI](https://swagger.io/tools/swagger-ui/)
 
@@ -61,5 +62,6 @@ After this process, the requests can be made in the swagger interface.
 - How to use flask smorest to create REST APIs
 - How to make validations using the marshmallow lib
 - How to use swagger ui
+- How to create authenticaton using flask jwt extended
 - How to create a make file
 - More about docker (docker cli)
