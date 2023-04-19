@@ -62,3 +62,13 @@ class UserLogin(MethodView):
             return {"acess_token": acess_token, "refresh_token": refresh_token}, 200
         
         abort(401, message="Invalid credentials")
+
+@blp.route("/refresh")
+class TokenRefresh(MethodView):
+    @jwt_required(refresh=True)
+    def post(self):
+        current_user = get_jwt_identity()
+        new_token = create_access_token(identity=current_user, fresh=false)
+        jti = get_jwt()["jwt"]
+        BLOCKLIST.add(jti)
+        return {"acess_token": new_token}, 200
