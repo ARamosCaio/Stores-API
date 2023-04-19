@@ -2,7 +2,7 @@
 
 ## Description
 
-The main goal of this project is to create an API to make CRUD operations on a store and its items.
+The main goal of this project is to create an API to make CRUD operations on a store and its items, based on users permissions
 
 ## Tools Used
 
@@ -65,3 +65,4 @@ After this process, the requests can be made in the swagger interface.
 - How to create authenticaton using flask jwt extended
 - How to create a make file
 - More about docker (docker cli)
+- How tokens work
