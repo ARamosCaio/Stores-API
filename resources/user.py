@@ -54,12 +54,12 @@ class UserLogin(MethodView):
     def post(self, user_data):
         user = UserModel.query.filter(
             UserModel.username == user_data["username"]
-        ).first
-
+        ).first()
+        
         if user and pbkdf2_sha256.verify(user_data["password"], user.password):
             acess_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
-            return {"acess_token": acess_token, "refresh_token": refresh_token}, 200
+            return {"access_token": acess_token, "refresh_token": refresh_token}, 200
         
         abort(401, message="Invalid credentials")
 
