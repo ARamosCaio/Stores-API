@@ -65,4 +65,4 @@ After this process, the requests can be made in the swagger interface.
 - How to create authenticaton using flask jwt extended
 - How to create a make file
 - More about docker (docker cli)
-- How tokens work
+- How tokens work and how to refresh tokens
